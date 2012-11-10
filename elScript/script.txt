@@ -1,0 +1,33 @@
+VARS
+	int i = 5
+	int j = 12
+	int gcf = 1
+	int loopCount = 0
+	int tmp = 0
+	int factor = 2
+EVARS
+
+CODE
+	PRINT "Finding the GCF"
+	PRINT i
+	PRINT j
+	IFG i,j
+		MOV loopCount,i
+	ELSE
+		MOV loopCount,j
+	EIF
+	SUB loopCount,$2
+	LOOP:loopCount
+		MOV tmp,i
+		MOD tmp,factor
+		IFEQ tmp,$0
+			MOV tmp,j
+			MOD tmp,factor
+			IFEQ tmp,$0
+				MOV gcf,factor
+			EIF
+		EIF
+		ADD factor,$1
+	ELOOP
+	PRINT gcf
+ECODE
